@@ -25,7 +25,8 @@ jobs:
       - name: Build
         run: |
           EXPORT_NAME=${json_export_name}_${json_version}_${{ github.run_number }}_web
-          mkdir -v -p build/$EXPORT_NAME
+          mkdir -v -p "build/$EXPORT_NAME"
+          ls
           EXPORT_DIR="$(readlink -f build)"
           cd $json_project_path
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/index.html"
