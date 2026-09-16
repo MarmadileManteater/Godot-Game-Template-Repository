@@ -24,7 +24,7 @@ jobs:
           mv /root/.local/share/godot/export_templates/${json_godot_version}.stable ~/.local/share/godot/export_templates/${json_godot_version}.stable
       - name: Build
         run: |
-          EXPORT_NAME=${json_export_name}_${json_version}_${{ github.run_number }}_web
+          EXPORT_NAME="web"
           mkdir -v -p "build/$EXPORT_NAME"
           ls
           EXPORT_DIR="$(readlink -f build)"
@@ -36,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: ${{ env.json_export_name }}_${{ env.json_version }}_${{ github.run_number }}_web
-          path: build/${{ env.json_export_name }}_${{ env.json_version }}_${{ github.run_number }}_web
+          path: build/web
