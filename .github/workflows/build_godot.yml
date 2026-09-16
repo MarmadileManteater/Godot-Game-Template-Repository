@@ -26,8 +26,7 @@ jobs:
         run: |
           EXPORT_NAME="web"
           mkdir -v -p "build/$EXPORT_NAME"
-          ls
-          EXPORT_DIR="$(readlink -f build)"
+          EXPORT_DIR="$(readlink -f build/$EXPORT_NAME)"
           cd $json_project_path
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/index.html"
           cp ../GODOT_LICENSE.txt $EXPORT_DIR/GODOT_LICENSE.txt
