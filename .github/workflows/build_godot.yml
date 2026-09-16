@@ -30,6 +30,7 @@ jobs:
           cd $json_project_path
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/index.html"
           cp ../GODOT_LICENSE.txt $EXPORT_DIR/GODOT_LICENSE.txt
+          echo $EXPORT_DIR
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
