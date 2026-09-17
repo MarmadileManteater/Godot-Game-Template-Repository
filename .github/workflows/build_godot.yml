@@ -19,16 +19,16 @@ jobs:
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${json_godot_version}.stable ~/.local/share/godot/export_templates/${json_godot_version}.stable
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Build
         run: |
           mkdir -v -p "build/web"
           EXPORT_DIR="$(readlink -f build/web)"
-          cd $json_project_path
+          cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/index.html"
           cp ../GODOT_LICENSE.txt $EXPORT_DIR/GODOT_LICENSE.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.json_export_name }}_${{ env.json_version }}_${{ github.run_number }}_web
+          name: ${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_web
           path: build/web
