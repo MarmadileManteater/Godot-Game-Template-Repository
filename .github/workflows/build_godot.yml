@@ -32,7 +32,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
-          name: windows
+          name: ${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_windows
           path: build/windows
 
   export-linux:
@@ -63,7 +63,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
-          name: linux
+          name: ${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_linux
           path: build/linux
   export-web:
     name: Web Export
