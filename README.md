@@ -1,6 +1,6 @@
 # Godot Game Repository Template
 
-In order to reduce headache when scaffolding projects, this is all the housekeeping files that we need when making games. 
+In order to reduce headache when scaffolding projects, this is all of the housekeeping files that we need when making games. 
 
 Stuff like:
 
