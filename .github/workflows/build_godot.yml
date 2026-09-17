@@ -95,3 +95,9 @@ jobs:
         with:
           name: ${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_web
           path: build/web
+  push-to-itch:
+    runs-on: ubuntu-latest
+    needs: [export-linux, export-windows, export-web]
+    steps:
+      - run: |
+          echo "this runs last"
