@@ -15,7 +15,7 @@ jobs:
           lfs: true
       - run: 
           |
-          bash ./.github/workflows/get_json_environment_variables.sh
+          bash ./.github/workflows/get_json_environment_variables.sh ./project.json
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
