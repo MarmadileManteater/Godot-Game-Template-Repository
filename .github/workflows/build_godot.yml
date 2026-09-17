@@ -101,6 +101,7 @@ jobs:
     needs: [export-linux, export-windows, export-web]
     steps:
       - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
       - run: |
+          ls
           echo "this runs last"
