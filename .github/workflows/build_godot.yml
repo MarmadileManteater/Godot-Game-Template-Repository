@@ -103,5 +103,5 @@ jobs:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v6
       - run: |
-          ls
+          ls -la
           echo "this runs last"
