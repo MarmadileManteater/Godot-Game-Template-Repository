@@ -100,8 +100,25 @@ jobs:
     runs-on: ubuntu-latest
     needs: [export-linux, export-windows, export-web]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          lfs: true
+      - name: Set environment variables
+        run: 
+          |
+          bash ./.github/workflows/get_json_environment_variables.sh ./project.json
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v6
+      - name: Download Butler
+        run: |
+          curl -Lo ./butler.zip "https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default"
+          unzip ./butler.zip
+      - name: Load API key from secrets
+        run: |
+          mkdir -p ~/.config/itch/
+          echo "${{ secrets.ITCH_API_KEY }}" >> ~/.config/itch/butler_creds
       - run: |
-          ls -la
-          echo "this runs last"
+          ./butler push "${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_web" $ITCH_USER/$ITCH_PROJECT_STUB:web --userversion ${{ env.VERSION }}.${{ github.run_number }}
+          ./butler push "${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_windows" $ITCH_USER/$ITCH_PROJECT_STUB:win --userversion ${{ env.VERSION }}.${{ github.run_number }}
+          ./butler push "${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_linux" $ITCH_USER/$ITCH_PROJECT_STUB:linux --userversion ${{ env.VERSION }}.${{ github.run_number }}
