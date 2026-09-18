@@ -31,6 +31,7 @@ jobs:
           godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
           cd $WORKING_DIRECTORY
           cp -r $WORKING_DIRECTORY/licenses/ $EXPORT_DIR/licenses/
+          ls -la $EXPORT_DIR
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
@@ -64,6 +65,7 @@ jobs:
           godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
           cd $WORKING_DIRECTORY
           cp -r $WORKING_DIRECTORY/licenses/ $EXPORT_DIR/licenses/
+          ls -la $EXPORT_DIR
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
@@ -97,6 +99,7 @@ jobs:
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/index.html"
           cd $WORKING_DIRECTORY
           cp -r $WORKING_DIRECTORY/licenses/ $EXPORT_DIR/licenses/
+          ls -la $EXPORT_DIR
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
