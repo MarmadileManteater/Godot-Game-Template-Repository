@@ -96,7 +96,7 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/index.html"
           cd $WORKING_DIRECTORY
-          cp -r $WORKING_DIRECTORY/licenses/ $EXPORT_DIR/web/licenses/
+          cp -r $WORKING_DIRECTORY/licenses/ $EXPORT_DIR/licenses/
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
