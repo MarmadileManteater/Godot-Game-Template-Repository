@@ -96,7 +96,7 @@ jobs:
         with:
           name: ${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_web
           path: build/web
-  
+
   push-to-itch:
     name: Push to Itch.io
     runs-on: ubuntu-latest
@@ -113,17 +113,17 @@ jobs:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v6
       - name: Download Butler
-        if: env.ITCH_USER != "" && env.ITCH_PROJECT_STUB != ""
+        if: env.ITCH_USER != '' && env.ITCH_PROJECT_STUB != ''
         run: |
           curl -Lo ./butler.zip "https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default"
           unzip ./butler.zip
       - name: Load API key from secrets
-        if: env.ITCH_USER != "" && env.ITCH_PROJECT_STUB != ""
+        if: env.ITCH_USER != '' && env.ITCH_PROJECT_STUB != ''
         run: |
           mkdir -p ~/.config/itch/
           echo "${{ secrets.ITCH_API_KEY }}" >> ~/.config/itch/butler_creds
       - name: Push to itch
-        if: env.ITCH_USER != "" && env.ITCH_PROJECT_STUB != ""
+        if: env.ITCH_USER != '' && env.ITCH_PROJECT_STUB != ''
         run: |
           ./butler push "${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_web" $ITCH_USER/$ITCH_PROJECT_STUB:${{ env.CHANNEL_PREFIX }}web --userversion ${{ env.VERSION }}.${{ github.run_number }}
           ./butler push "${{ env.EXPORT_NAME }}_${{ env.VERSION }}_${{ github.run_number }}_windows" $ITCH_USER/$ITCH_PROJECT_STUB:${{ env.CHANNEL_PREFIX }}win --userversion ${{ env.VERSION }}.${{ github.run_number }}
