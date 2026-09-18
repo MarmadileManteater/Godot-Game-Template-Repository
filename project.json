@@ -4,5 +4,6 @@
     "version": "1.0",
     "project_path": "",
     "itch_user": "",
-    "itch_project_stub": ""
+    "itch_project_stub": "",
+    "channel_prefix": ""
 }
