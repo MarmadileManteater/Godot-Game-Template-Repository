@@ -1,5 +1,5 @@
 name: "Build Godot Game"
-on: [push, workflow_run]
+on: push
 
 jobs:
   export-windows:
